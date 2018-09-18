@@ -1,89 +1,100 @@
+using System;
 using System.Collections.Generic;
 using System.Collections;
+using ToDoList;
+using MySql.Data.MySqlClient;
 
 namespace ToDoList.Models
 {
   public class Item
   {
-    private string _description;
-    private int _id;
+  private int _id;
+  private string _description;
+
+  public Item(string Description, int Id = 0)
+  {
+    _id = Id;
+    _description = Description;
+  }
+
+  // public override bool Equals(System.Object otherItem)
+  // {
+  //   if (!(otherItem is Item))
+  //   {
+  //     return false;
+  //   }
+  //   else
+  //   {
+  //   Item newItem = (Item) otherItem;
+  //   bool idEquality = (this.GetId() == newItem.GetId());
+  //   bool descriptionEquality = (this.GetDescription() == newItem.GetDescription());
+  //   return (idEquality && descriptionEquality);
+  //   }
 
 
-    public Item (string description, int Id = 0)
+  public static List<Item> GetAll()
+  {
+    List<Item> allItems = new List<Item> {};
+    MySqlConnection conn = DB.Connection();
+    conn.Open();
+    MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+    cmd.CommandText = @"SELECT * FROM items;";
+    MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+    while(rdr.Read())
     {
-      _description = description;
-      _id = Id;
+          int itemId = rdr.GetInt32(0);
+          string itemDescription = rdr.GetString(1);
+          Item newItem = new Item(itemDescription, itemId);
+          allItems.Add(newItem);
     }
-    public string GetDescription()
+    conn.Close();
+    if (conn != null)
     {
-      return _description;
+      conn.Dispose();
     }
-    public void SetDescription(string newDescription)
-    {
-      _description = newDescription;
+      return allItems;
     }
-    public int GetId()
-    {
-      return _id;
-    }
-    public static List<Item> GetAll()
-    {
-      List<Item> allItems = new List<Item> {};
-         MySqlConnection conn = DB.Connection();
-         conn.Open();
-         MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-         cmd.CommandText = @"SELECT * FROM items;";
-         MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
-         while(rdr.Read())
-         {
-           int itemId = rdr.GetInt32(0);
-           string itemDescription = rdr.GetString(1);
-           Item newItem = new Item(itemDescription, itemId);
-           allItems.Add(newItem);
-         }
-         conn.Close();
-         if (conn != null)
-         {
-             conn.Dispose();
-         }
-         return allItems;
-    }
+
+// public void Save()
+//    {
+//    MySqlConnection conn = DB.Connection();
+//    conn.Open();
+//
+//    var cmd = conn.CreateCommand() as MySqlCommand;
+//    cmd.CommandText = @"INSERT INTO items (description) VALUES (@ItemDescription);";
+//
+//    MySqlParameter description = new MySqlParameter();
+//    description.ParameterName = "@ItemDescription";
+//    description.Value = this._description;
+//    cmd.Parameters.Add(description);
+//    // more logic will go here
+//
+//    cmd.ExecuteNonQuery();
+//  _id = (int) cmd.LastInsertedId;
+//
+//     conn.Close();
+//     if (conn != null)
+//     {
+//         conn.Dispose();
+//     }
+//    }
+//
+  public static void DeleteAll()
+  {
+    MySqlConnection conn = DB.Connection();
+    conn.Open();
+
+    var cmd = conn.CreateCommand() as MySqlCommand;
+    cmd.CommandText = @"DELETE FROM items;";
+
+    cmd.ExecuteNonQuery();
+
+     conn.Close();
+     if (conn != null)
+     {
+         conn.Dispose();
+     }
+     
    }
   }
-  // public class Program
-  // {
-  //   public static void Main ()
-  //   {
-  //     Console.WriteLine("Would You like to add an item to your list or view your list? (Add/View)");
-  //     string response = Console.ReadLine().ToLower();
-  //
-  //     if (response == "add")
-  //     {
-  //       Console.WriteLine ("Please Add To Do:");
-  //       string wordEntered = Console.ReadLine();
-  //       Item newItem = new Item(wordEntered);
-  //       newItem.Save();
-  //
-  //       Console.WriteLine (wordEntered +  " has been added to your list.");
-  //       Main();
-  //     }
-  //     else if (response == "view")
-  //     {
-  //       List<Item> instances = Item.GetAll();
-  //       for (int i = 0; i < instances.Count; i++)
-  //       {
-  //         string instanceDescription = instances[i].GetDescription();
-  //         Console.WriteLine((i + 1) + ". " + instanceDescription);
-  //       }
-  //       Main();
-  //     }
-  //     else
-  //     {
-  //       Console.WriteLine("Would you like to quit the program? Type 'yes' to quit, otherwise hit enter to continue.");
-  //       if (Console.ReadLine() != "yes")
-  //       {
-  //         Main();
-  //       }
-  //     }
-  //   }
-// }
+ }
