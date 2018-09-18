@@ -42,6 +42,10 @@ namespace ToDoList.Models
     {
       return _id;
     }
+    public void SetId(int newId)
+    {
+      _id = newId;
+    }
 
 
 

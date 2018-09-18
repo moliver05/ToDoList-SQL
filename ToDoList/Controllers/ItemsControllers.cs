@@ -28,5 +28,11 @@ public class ItemsController : Controller
       List<Item> allItems = Item.GetAll();
       return View("Index", allItems);
   }
+  // [HttpGet("/items/{id}")]
+  //    public ActionResult Details(int id)
+  //    {
+  //        Item item = Item.Find(id);
+  //        return View(item);
+  //    }
  }
 }
