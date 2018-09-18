@@ -16,20 +16,35 @@ namespace ToDoList.Models
     _id = Id;
     _description = Description;
   }
+    public override bool Equals(System.Object otherItem)
+    {
+      if (!(otherItem is Item))
+      {
+        return false;
+      }
+      else
+      {
+      Item newItem = (Item) otherItem;
+      bool idEquality = (this.GetId() == newItem.GetId());
+      bool descriptionEquality = (this.GetDescription() == newItem.GetDescription());
+      return (descriptionEquality);
+      }
+    }
+    public string GetDescription()
+    {
+      return _description;
+    }
+    public void SetDescription(string newDescription)
+    {
+      _description = newDescription;
+    }
+    public int GetId()
+    {
+      return _id;
+    }
 
-  // public override bool Equals(System.Object otherItem)
-  // {
-  //   if (!(otherItem is Item))
-  //   {
-  //     return false;
-  //   }
-  //   else
-  //   {
-  //   Item newItem = (Item) otherItem;
-  //   bool idEquality = (this.GetId() == newItem.GetId());
-  //   bool descriptionEquality = (this.GetDescription() == newItem.GetDescription());
-  //   return (idEquality && descriptionEquality);
-  //   }
+
+
 
 
   public static List<Item> GetAll()
@@ -55,30 +70,30 @@ namespace ToDoList.Models
       return allItems;
     }
 
-// public void Save()
-//    {
-//    MySqlConnection conn = DB.Connection();
-//    conn.Open();
-//
-//    var cmd = conn.CreateCommand() as MySqlCommand;
-//    cmd.CommandText = @"INSERT INTO items (description) VALUES (@ItemDescription);";
-//
-//    MySqlParameter description = new MySqlParameter();
-//    description.ParameterName = "@ItemDescription";
-//    description.Value = this._description;
-//    cmd.Parameters.Add(description);
-//    // more logic will go here
-//
-//    cmd.ExecuteNonQuery();
-//  _id = (int) cmd.LastInsertedId;
-//
-//     conn.Close();
-//     if (conn != null)
-//     {
-//         conn.Dispose();
-//     }
-//    }
-//
+    public void Save()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO items (description) VALUES (@ItemDescription);";
+
+      MySqlParameter description = new MySqlParameter();
+      description.ParameterName = "@ItemDescription";
+      description.Value = this._description;
+      cmd.Parameters.Add(description);
+      // // more logic will go here
+      //
+      cmd.ExecuteNonQuery();
+      _id = (int) cmd.LastInsertedId;
+      //
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+
   public static void DeleteAll()
   {
     MySqlConnection conn = DB.Connection();
@@ -94,7 +109,7 @@ namespace ToDoList.Models
      {
          conn.Dispose();
      }
-     
+
    }
   }
  }
