@@ -26,6 +26,7 @@ public class ItemsController : Controller
   {
       Item newItem = new Item(Request.Form["new-item"]);
       List<Item> allItems = Item.GetAll();
+      newItem.Save();
       return View("Index", allItems);
   }
   // [HttpGet("/items/{id}")]
