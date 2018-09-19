@@ -29,11 +29,17 @@ public class ItemsController : Controller
       newItem.Save();
       return View("Index", allItems);
   }
-  // [HttpGet("/items/{id}")]
-  //    public ActionResult Details(int id)
-  //    {
-  //        Item item = Item.Find(id);
-  //        return View(item);
-  //    }
+  [HttpGet("/items/{id}")]
+  public ActionResult Details(int id)
+  {
+     Item item = Item.Find(id);
+     return View(item);
+ }
+ [HttpGet("items/delete")]
+ public ActionResult DeleteAll()
+ {
+  Item.DeleteAll();
+  return View();
+ }
  }
 }
