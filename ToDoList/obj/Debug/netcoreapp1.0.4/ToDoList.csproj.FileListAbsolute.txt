@@ -1,0 +1,16 @@
+/Users/Guest/Desktop/ToDo.Solution/ToDoList/bin/Debug/netcoreapp1.0.4/ToDoList.deps.json
+/Users/Guest/Desktop/ToDo.Solution/ToDoList/bin/Debug/netcoreapp1.0.4/ToDoList.runtimeconfig.json
+/Users/Guest/Desktop/ToDo.Solution/ToDoList/bin/Debug/netcoreapp1.0.4/ToDoList.runtimeconfig.dev.json
+/Users/Guest/Desktop/ToDo.Solution/ToDoList/bin/Debug/netcoreapp1.0.4/ToDoList.dll
+/Users/Guest/Desktop/ToDo.Solution/ToDoList/bin/Debug/netcoreapp1.0.4/ToDoList.pdb
+/Users/Guest/Desktop/ToDo.Solution/ToDoList/obj/Debug/netcoreapp1.0.4/ToDoList.AssemblyInfo.cs
+/Users/Guest/Desktop/ToDo.Solution/ToDoList/obj/Debug/netcoreapp1.0.4/ToDoList.dll
+/Users/Guest/Desktop/ToDo.Solution/ToDoList/obj/Debug/netcoreapp1.0.4/ToDoList.pdb
+/Users/Guest/Desktop/ToDoList-SQL/ToDoList/bin/Debug/netcoreapp1.0.4/ToDoList.deps.json
+/Users/Guest/Desktop/ToDoList-SQL/ToDoList/bin/Debug/netcoreapp1.0.4/ToDoList.runtimeconfig.json
+/Users/Guest/Desktop/ToDoList-SQL/ToDoList/bin/Debug/netcoreapp1.0.4/ToDoList.runtimeconfig.dev.json
+/Users/Guest/Desktop/ToDoList-SQL/ToDoList/bin/Debug/netcoreapp1.0.4/ToDoList.dll
+/Users/Guest/Desktop/ToDoList-SQL/ToDoList/bin/Debug/netcoreapp1.0.4/ToDoList.pdb
+/Users/Guest/Desktop/ToDoList-SQL/ToDoList/obj/Debug/netcoreapp1.0.4/ToDoList.AssemblyInfo.cs
+/Users/Guest/Desktop/ToDoList-SQL/ToDoList/obj/Debug/netcoreapp1.0.4/ToDoList.dll
+/Users/Guest/Desktop/ToDoList-SQL/ToDoList/obj/Debug/netcoreapp1.0.4/ToDoList.pdb

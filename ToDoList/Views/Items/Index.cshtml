@@ -1,11 +1,20 @@
-<h1>To Do List</h1>
-<ul>
+@{
+  Layout = "_Layout";
+}
+<p>Item index</p>
 @foreach (var item in Model)
-   {
-       <h4>@item.GetDescription() | <a href="/items/@item.GetId()/update">Edit</a></h4>
-   }
-</ul>
-<p><a href="/items/new">Add another item</a></p>
-<form action="/items/delete" method="post">
-  <button type="submit" name="button">Clear All Items</button>
+{
+    <h4>@item.description | <a href="/items/@item.id/update">Edit</a></h4>
+}
+<form action="/items/sorted" method = "post">
+<div class="form-group">
+<select class="form-control" name="order" id="order">
+<option>ASC</option>
+<option>DESC</option>
+</select>
+</div>
+<button type="submit" class="btn btn-info">Filter</button>
 </form>
+<a href = "/items/new">Add New Items</a>
+
+<a href = "/items/sorted">Sort Items</a>

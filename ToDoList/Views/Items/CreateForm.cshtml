@@ -1,7 +1,17 @@
-<h1>Add a new item to @Model.GetName()</h1>
-<form action='/items' method='post'>
-  <input id='categoryId' name='categoryId' type='hidden' value='@Model.GetId()'>
+@{
+  Layout = "_Layout";
+}<form action='/items' method='post'>
+
   <label for='itemDescription'>Item description</label>
   <input id='itemDescription' name='itemDescription' type='text'>
+  <label for='itemDueDate'>Item due date</label>
+  <input id='itemDueDate' name='itemDueDate' type='date'>
+  <select name="category">
+    @foreach (var category in Model)
+    {
+      <option  value=@category.GetId()>@category.GetName()</option>
+    }
+  </select>
+
   <button type='submit'>Add item</button>
 </form>
